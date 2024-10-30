@@ -8,14 +8,13 @@ const registerUser = async (req, res) => {
     const { name, email, password } = req.body
 
     if (!name || !email || !password) {
-      res.status(400)
-      throw new Error('please fill all the fields')
+      return res.status(400).json({ error: 'please fill all the fields' });
     }
 
     const userExists = await Users.findOne({ email })
 
     if (userExists) {
-      throw new Error('User already exists', userExists)
+      return res.status(401).json({ error: 'User already exists' });
     }
 
     const salt = await bcrypt.genSalt(10)
