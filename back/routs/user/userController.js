@@ -25,7 +25,6 @@ const registerUser = async (req, res) => {
       email,
       password: hashedPassword,
     })
-
     if (user) {
 
       res.status(201).json({

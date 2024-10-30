@@ -77,13 +77,15 @@ export const AuthProvider = ({ children }) => {
     }
 
     async function handleRegister(user) {
-
+        
         try {
-            const response = await axios.post("http://localhost:4001/register", user, {
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded",
-                },
-            })
+            const response = await axios.post("http://localhost:4001/user/register", user)
+            console.log(response)
+            if (response.status == 201) {
+                setUser(response.data);
+                navigate("/");
+            }
+
         } catch (error) {
             if (error.response.status === 400) {
                 console.log("Fill all the fields");
@@ -98,8 +100,6 @@ export const AuthProvider = ({ children }) => {
                 console.log(`Unexpected response: ${error.response.status}`);
             }
         }
-        setUser(user);
-        navigate("/");
     }
 
     const contextData = useMemo(() => ({
