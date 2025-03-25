@@ -13,3 +13,10 @@ git checkout main                   # Switch to the main branch
 git merge master --allow-unrelated-histories  # Merge master into main
 # Resolve conflicts if any...
 git push origin main                # Push changes to the remote repo
+
+
+//prisma update 
+npx prisma db pull
+
+//prisma gen client
+npx prisma generate
